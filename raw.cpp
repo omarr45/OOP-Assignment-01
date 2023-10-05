@@ -8,9 +8,9 @@ public:
   void printPacketInfo(int n, ofstream &outputFile)
   {
     Packet::printPacketInfo(n, outputFile);
-    outputFile << "Destination Address: " << destinationAddress << endl;
-    outputFile << "Source Address: " << sourceAddress << endl;
-    outputFile << "Type: " << type << endl;
+    outputFile << "Destination Address: " << getDestinationAddress() << endl;
+    outputFile << "Source Address: " << getSourceAddress() << endl;
+    outputFile << "Type: " << getType() << endl;
     outputFile << endl
                << "**************************************************************************************************************************************************************************************************************************************" << endl
                << endl;
