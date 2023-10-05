@@ -10,11 +10,45 @@ using namespace std;
 
 vector<Packet *> packets;
 
+enum packetType
+{
+  ECPRI,
+  RAW,
+  INVALID
+};
+
 int catchErr(bool condition, string message)
 {
   if (condition)
     cerr << message << endl;
   return 1;
+}
+
+packetType getPacketType(string line)
+{
+  if (line.substr(40, 4) == "AEFE")
+    return packetType::ECPRI;
+  else if (line.substr(40, 4) == "88F7")
+    return packetType::RAW;
+  else
+    return packetType::INVALID;
+}
+
+Packet *getPacket(packetType packetType, string line)
+{
+  if (packetType == packetType::ECPRI)
+  {
+    return new Enhanced(line);
+  }
+  else if (packetType == packetType::RAW)
+  {
+    return new Raw(line);
+  }
+  else
+  {
+    cerr << "Invalid packet type." << endl;
+    return nullptr;
+  }
 }
 
 void parseFile(string fileName)
@@ -26,20 +60,8 @@ void parseFile(string fileName)
   string line;
   while (getline(inputFile, line))
   {
-    if (line.substr(40, 4) == "AEFE") // Code for Enhanced packet
-    {
-      Enhanced *e = new Enhanced(line);
-      packets.push_back(e);
-    }
-    else if (line.substr(40, 4) == "88F7") // Code for Raw packet
-    {
-      Raw *r = new Raw(line);
-      packets.push_back(r);
-    }
-    else
-    {
-      cerr << "Invalid packet type" << endl;
-    }
+    packetType packetType = getPacketType(line);
+    packets.push_back(getPacket(packetType, line));
   }
 
   inputFile.close(); // Close the input file

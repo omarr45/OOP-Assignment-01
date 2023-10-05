@@ -82,17 +82,25 @@ public:
   void printPacketInfo(int n, ofstream &outputFile)
   {
     Packet::printPacketInfo(n, outputFile);
-    outputFile << "Concatenation Indicator: " << concatIndicator << endl;
-    outputFile << "Destination Address: " << getDestinationAddress() << endl;
-    outputFile << "Message Type: " << messageType << endl;
-    outputFile << "Payload Size: " << payloadSize << endl;
-    outputFile << "Protocol Version: " << protocolVersion << endl;
-    outputFile << "RTC ID: " << rtcId << endl;
-    outputFile << "Sequence ID: " << sequenceId << endl;
-    outputFile << "Source Address: " << getSourceAddress() << endl;
-    outputFile << "Type: " << getType() << endl;
-    outputFile << endl
-               << "**************************************************************************************************************************************************************************************************************************************" << endl
-               << endl;
+    try
+    {
+
+      outputFile << "Concatenation Indicator: " << concatIndicator << endl;
+      outputFile << "Destination Address: " << getDestinationAddress() << endl;
+      outputFile << "Message Type: " << messageType << endl;
+      outputFile << "Payload Size: " << payloadSize << endl;
+      outputFile << "Protocol Version: " << protocolVersion << endl;
+      outputFile << "RTC ID: " << rtcId << endl;
+      outputFile << "Sequence ID: " << sequenceId << endl;
+      outputFile << "Source Address: " << getSourceAddress() << endl;
+      outputFile << "Type: " << getType() << endl;
+      outputFile << endl
+                 << "**************************************************************************************************************************************************************************************************************************************" << endl
+                 << endl;
+    }
+    catch (...)
+    {
+      cerr << "Enhanced::printPacketInfo - Error writing to file" << endl;
+    }
   }
 };
