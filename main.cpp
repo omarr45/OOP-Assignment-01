@@ -8,16 +8,20 @@
 
 using namespace std;
 
-int main()
-{
-  ifstream inputFile("input_packets.txt");
-  if (!inputFile)
-  {
-    cerr << "Failed to open the input file." << endl;
-    return 1;
-  }
+vector<Packet *> packets;
 
-  vector<Packet *> packets;
+int catchErr(bool condition, string message)
+{
+  if (condition)
+    cerr << message << endl;
+  return 1;
+}
+
+void parseFile(string fileName)
+{
+  ifstream inputFile(fileName);
+
+  catchErr(!inputFile, "Failed to open the input file.");
 
   string line;
   while (getline(inputFile, line))
@@ -39,14 +43,13 @@ int main()
   }
 
   inputFile.close(); // Close the input file
+}
 
+void writePacketsToFile()
+{
   ofstream outputFile("output_packets.txt");
 
-  if (!outputFile)
-  {
-    cerr << "Failed to open the output file." << endl;
-    return 1;
-  }
+  catchErr(!outputFile, "Failed to open the output file.");
 
   int cnt = 0;
 
@@ -58,6 +61,12 @@ int main()
   }
 
   outputFile.close(); // Close the output file
+}
+
+int main()
+{
+  parseFile("input_packets.txt");
+  writePacketsToFile();
 
   return 0;
 }
