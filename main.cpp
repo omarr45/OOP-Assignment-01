@@ -45,9 +45,9 @@ void parseFile(string fileName)
   inputFile.close(); // Close the input file
 }
 
-void writePacketsToFile()
+void writePacketsToFile(string fileName)
 {
-  ofstream outputFile("output_packets.txt");
+  ofstream outputFile(fileName);
 
   catchErr(!outputFile, "Failed to open the output file.");
 
@@ -66,7 +66,7 @@ void writePacketsToFile()
 int main()
 {
   parseFile("input_packets.txt");
-  writePacketsToFile();
+  writePacketsToFile("output_packets.txt");
 
   return 0;
 }
