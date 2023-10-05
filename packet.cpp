@@ -83,7 +83,6 @@ public:
   {
     try
     {
-
       outputFile << "Packet # " << idx << ":" << endl;
       outputFile << line << endl;
       outputFile << "CRC: " << crc << endl;
