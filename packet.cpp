@@ -81,8 +81,16 @@ public:
 
   virtual void printPacketInfo(int idx, ofstream &outputFile)
   {
-    outputFile << "Packet # " << idx << ":" << endl;
-    outputFile << line << endl;
-    outputFile << "CRC: " << crc << endl;
+    try
+    {
+
+      outputFile << "Packet # " << idx << ":" << endl;
+      outputFile << line << endl;
+      outputFile << "CRC: " << crc << endl;
+    }
+    catch (...)
+    {
+      cout << "Packet::printPacketInfo - Error writing to file" << endl;
+    }
   }
 };
