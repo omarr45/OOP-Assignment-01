@@ -7,3 +7,7 @@
 
 5. Don't forget to delete the `output_packets.txt` after downloading it.
 6. Also delete `main.exe` to keep the original files only.
+
+## UML diagram
+
+![uml diagram for assignment 1](uml.jpg 'UML Diagram')
