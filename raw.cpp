@@ -4,6 +4,7 @@ public:
   Raw(string s) : Packet::Packet(s)
   {
   }
+
   void printPacketInfo(int n, ofstream &outputFile)
   {
     Packet::printPacketInfo(n, outputFile);

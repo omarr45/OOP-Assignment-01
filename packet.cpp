@@ -13,9 +13,6 @@ protected:
   string type;
 
 public:
-  Packet()
-  {
-  }
   Packet(string s)
   {
     line = s;
@@ -25,6 +22,7 @@ public:
     sourceAddress = s.substr(28, 12);
     type = s.substr(40, 4);
   }
+
   virtual void printPacketInfo(int idx, ofstream &outputFile)
   {
     outputFile << "Packet # " << idx << ":" << endl;

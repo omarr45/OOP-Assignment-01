@@ -18,6 +18,7 @@ public:
     rtcId = s.substr(52, 4);
     sequenceId = s.substr(56, 4);
   }
+
   void printPacketInfo(int n, ofstream &outputFile)
   {
     Packet::printPacketInfo(n, outputFile);
